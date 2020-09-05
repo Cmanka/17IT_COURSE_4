@@ -11,4 +11,9 @@ public class Manager extends Employee {
     public String getDeptName() {
         return deptName;
     }
+
+    @Override
+    public  void printName(){
+        System.out.println("Manager");
+    }
 }

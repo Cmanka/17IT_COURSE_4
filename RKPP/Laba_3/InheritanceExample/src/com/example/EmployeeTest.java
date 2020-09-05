@@ -24,5 +24,10 @@ public class EmployeeTest {
         printEmployee(mgr);
         printEmployee(adm);
         printEmployee(dir);
+
+        eng.printName();
+        mgr.printName();
+        adm.printName();
+        dir.printName();
     }
 }

@@ -12,4 +12,9 @@ public class Director extends Manager {
         return budget;
     }
 
+    @Override
+    public  void printName(){
+        System.out.println("Director");
+    }
+
 }

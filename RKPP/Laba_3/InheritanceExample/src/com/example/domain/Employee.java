@@ -40,4 +40,8 @@ public class Employee {
             salary+=increase;
         }
     }
+
+    public  void printName(){
+        System.out.println(this.name);
+    }
 }
