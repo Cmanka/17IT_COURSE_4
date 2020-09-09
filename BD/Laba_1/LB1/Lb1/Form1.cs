@@ -34,6 +34,10 @@ namespace Lb1
                 else
                     textBox2.Text = "Не угадал!";
             }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
     }

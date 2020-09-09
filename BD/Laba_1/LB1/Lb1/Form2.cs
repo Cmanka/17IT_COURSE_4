@@ -33,6 +33,10 @@ namespace Lb1
                     textBox2.Text = sum.ToString();
                 }
             }
+            else
+            {
+                MessageBox.Show("Erro");
+            }
         }
     }
 }

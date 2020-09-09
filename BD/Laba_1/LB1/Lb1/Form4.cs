@@ -24,7 +24,7 @@ namespace Lb1
             double num3;
             double result;
 
-            if (double.TryParse(textBox1.Text, out num1) && 
+            if (double.TryParse(textBox1.Text, out num1) &&
                 double.TryParse(textBox2.Text, out num2) &&
                 double.TryParse(textBox3.Text, out num3))
             {
@@ -34,10 +34,10 @@ namespace Lb1
                     textBox4.Text = result.ToString();
                 }
                 else
-                    textBox4.Text = "Данные введены неверно!";
+                    MessageBox.Show("Eror");
             }
             else
-                textBox4.Text = "Данные введены неверно!";
+                MessageBox.Show("Eror");
         }
     }
 }

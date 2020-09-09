@@ -19,9 +19,15 @@ namespace Lb1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int i;
-            i = textBox1.Text.Length;
-            textBox2.Text = string.Format("Летели {0}  вороны", i);
+            if (textBox1.Text.Length == 0)
+            {
+                int i;
+                i = textBox1.Text.Length;
+                textBox2.Text = string.Format("Летели {0}  вороны", i);
+            }
+            else
+                MessageBox.Show("Eror");
+
         }
     }
 }

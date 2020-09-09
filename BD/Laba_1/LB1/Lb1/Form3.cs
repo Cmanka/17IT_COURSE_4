@@ -26,6 +26,10 @@ namespace Lb1
                 num = Math.Abs(num);
                 textBox2.Text = num.ToString();
             }
+            else
+            {
+                MessageBox.Show("error");
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -38,6 +42,10 @@ namespace Lb1
                     num *= -1 ;
                 num = Math.Sqrt(num);
                 textBox2.Text = num.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Error");
             }
         }
     }
