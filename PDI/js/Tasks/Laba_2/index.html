@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>First Task</h1>
+		<form name="FirstForm">
+			A : x<input type="text" id="Ax" onfocus="getData()" />; y<input type="text" id="Ay" onfocus="getData()" /><br />
+			B : x<input type="text" id="Bx" onfocus="getData()" />; y<input type="text" id="By" onfocus="getData()" /><br />
+			C : x<input type="text" id="Cx" onfocus="getData()" />; y<input type="text" id="Cy" onfocus="getData()" /><br />
+			S = <span id="result">0</span><br />
+			<input type="reset" value="reset" />
+		</form>
+		<hr />
+		<h1>Second Task</h1>
+		<form name="SecondForm">
+			<input type="text" id="x" /> <br />
+			<input type="text" id="y" /> <br />
+			<input type="reset" value="reset" />
+			<input type="text" name="result" value="rand text" onselect="calculateRange(SecondForm)" />
+		</form>
+		<hr />
+		<h1>Third Task</h1>
+		<form name="ThirdForm">
+			<input type="text" name="firstValue" value="10" onblur="replaceValues(ThirdForm)" />
+			<input type="text" name="secondValue" value="20" onblur="replaceValues(ThirdForm)" />
+		</form>
+		<script src="script.js"></script>
+	</body>
+</html>

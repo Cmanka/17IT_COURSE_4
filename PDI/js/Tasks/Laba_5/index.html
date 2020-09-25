@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			#hr {
+				width: 300px;
+				background-color: black;
+				height: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>FirstTask</h1>
+		<form name="FirstForm">
+			<input type="radio" name="size" value="plus" />+ size <br />
+			<input type="radio" name="size" value="minus" />- size <br />
+			<input type="radio" name="align" value="left" />left align <br />
+			<input type="radio" name="align" value="right" />right align <br />
+			<input type="button" value="change" onclick="changeHrTag(FirstForm)" />
+			<input type="reset" value="reset" onclick="resetHrTag()" />
+			<hr align="center" id="hr" />
+		</form>
+		<hr />
+		<h1>Second Task</h1>
+		<form name="SecondForm">
+			First Name <input type="text" name="firstName" /><br />
+			Last Name <input type="text" name="lastName" /><br />
+			Sex | Man <input type="radio" name="sex" value="man" /> | Woman
+			<input type="radio" name="sex" value="woman" /><br />
+			Age <input type="number" name="age" /><br />
+			Marital Status | Single <input type="radio" name="status" value="single" /> | Married
+			<input type="radio" name="status" value="married" /><br />
+			<input type="button" value="Send" onclick="sendForm(SecondForm)" />
+			<input type="reset" value="reset" />
+		</form>
+		<script src="script.js"></script>
+	</body>
+</html>

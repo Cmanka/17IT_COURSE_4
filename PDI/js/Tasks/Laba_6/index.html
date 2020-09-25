@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div>
+			<form name="userForm">
+				Name
+				<br />
+				<input type="text" name="name" /><br />
+				Email
+				<br />
+				<input type="text" name="email" /> <br />
+				Age
+				<br />
+				<input type="text" name="age" /> <br />
+				<br />
+			</form>
+		</div>
+
+		<form name="form" onmouseover="getValues()">
+			<div style="display: flex">
+				<table border="1px solid black">
+					<tr>
+						<td>Name</td>
+						<td>Duration(h)</td>
+						<td>Language</td>
+						<td>Price</td>
+					</tr>
+
+					<tr>
+						<td><input type="checkbox" name="thing" value="10" /> PDI<br /></td>
+						<td>
+							<input type="radio" name="pdiTime" checked value="5" />10
+							<input type="radio" name="pdiTime" value="10" />20 <input type="radio" name="pdiTime" value="15" />30
+						</td>
+						<td>
+							<input type="radio" name="pdiLang" checked value="10" />Russian
+							<input type="radio" name="pdiLang" value="20" />English
+						</td>
+						<td><input type="number" name="pdiPrice" /></td>
+					</tr>
+
+					<tr>
+						<td><input type="checkbox" name="thing" value="20" />RKPP<br /></td>
+						<td>
+							<input type="radio" checked name="rkppTime" value="5" />10
+							<input type="radio" name="rkppTime" value="10" />20 <input type="radio" name="rkppTime" value="15" />30
+						</td>
+						<td>
+							<input type="radio" checked name="rkppLang" value="10" />Russian
+							<input type="radio" name="rkppLang" value="20" />English
+						</td>
+						<td><input type="number" name="rkppPrice" /></td>
+					</tr>
+
+					<tr>
+						<td><input type="checkbox" name="thing" value="30" />BD<br /></td>
+						<td>
+							<input type="radio" name="bdTime" checked value="5" />10 <input type="radio" name="bdTime" value="10" />20
+							<input type="radio" name="bdTime" value="15" />30
+						</td>
+						<td>
+							<input type="radio" name="bdLang" checked value="10" />Russian
+							<input type="radio" name="bdLang" value="20" />English
+						</td>
+						<td><input type="number" name="bdPrice" /></td>
+					</tr>
+
+					<tr>
+						<td><input type="checkbox" name="thing" value="40" />PMS<br /></td>
+						<td>
+							<input type="radio" name="pmsTime" checked value="5" />10
+							<input type="radio" name="pmsTime" value="10" />20 <input type="radio" name="pmsTime" value="15" />30
+						</td>
+						<td>
+							<input type="radio" name="pmsLang" checked value="10" />Russian
+							<input type="radio" name="pmsLang" value="20" />English
+						</td>
+						<td><input type="number" name="pmsPrice" /></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<br />
+				<input type="button" value="Calculate" onclick="calculatePrice()" />
+				<input type="reset" value="Reset" />
+				<input type="Text" name="result" />
+			</div>
+		</form>
+
+		<script src="script.js"></script>
+	</body>
+</html>

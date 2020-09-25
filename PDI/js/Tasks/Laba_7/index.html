@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<h1>First Task</h1>
+		<form name="form">
+			<table class="table" border="1px solid black">
+				<tr>
+					<td id="1" onclick="setFieldColor('1',form.fieldSelected.value)">somee text</td>
+					<td id="2" onclick="setFieldColor('2',form.fieldSelected.value)">somee text</td>
+					<td id="3" onclick="setFieldColor('3',form.fieldSelected.value)">somee text</td>
+					<td id="4" onclick="setFieldColor('4',form.fieldSelected.value)">somee text</td>
+				</tr>
+				<tr>
+					<td id="5" onclick="setFieldColor('5',form.fieldSelected.value)">somee text</td>
+					<td id="6" onclick="setFieldColor('6',form.fieldSelected.value)">somee text</td>
+					<td id="7" onclick="setFieldColor('7',form.fieldSelected.value)">somee text</td>
+					<td id="8" onclick="setFieldColor('8',form.fieldSelected.value)">somee text</td>
+				</tr>
+				<tr>
+					<td id="9" onclick="setFieldColor('9',form.fieldSelected.value)">somee text</td>
+					<td id="10" onclick="setFieldColor('10',form.fieldSelected.value)">somee text</td>
+					<td id="11" onclick="setFieldColor('11',form.fieldSelected.value)">somee text</td>
+					<td id="12" onclick="setFieldColor('12',form.fieldSelected.value)">somee text</td>
+				</tr>
+			</table>
+			Table
+			<select name="backgroundSelected" onchange="setTableColor(form.backgroundSelected.value)">
+				<option value="red">Red</option>
+				<option value="green">Green</option>
+				<option value="blue">Blue</option>
+				<option value="img">Image</option>
+			</select>
+			Field
+			<select name="fieldSelected">
+				<option value="red">Red</option>
+				<option value="green">Green</option>
+				<option value="blue">Blue</option>
+				<option value="img">Image</option>
+			</select>
+		</form>
+		<hr />
+		<h1>Second Task</h1>
+		<form name="form1">
+			Items
+			<select name="items">
+				<option value="item1">item1</option>
+				<option value="item2">item2</option>
+				<option value="item3">item3</option>
+				<option value="item4">item4</option>
+				<option value="item5">item5</option>
+			</select>
+			<br />
+			Count <input type="number" name="itemsCount" value="1" /> <br />
+			Price <input type="number" name="itemPrice" value="10" /><br />
+			<input type="button" value="calculate" onclick="calculateOrder(form1)" /> <br />
+		</form>
+		<script src="script.js"></script>
+	</body>
+</html>

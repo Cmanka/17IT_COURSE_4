@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>First Task</h1>
+		<form name="FirstForm">
+			<input type="text" name="v1" /><br />
+			<input type="text" name="v2" /><br />
+			<input type="text" name="v3" /><br />
+			<input type="text" name="v4" /><br />
+			<input type="text" name="v5" /><br />
+			<input type="button" value="Calculate" onclick="calculateMaxValue(FirstForm)" />
+			<input type="text" name="result" />
+			<input type="reset" />
+		</form>
+		<hr />
+		<h1>Second Task</h1>
+		<form name="SecondForm">
+			<input type="text" name="firstSide" /><br />
+			<input type="text" name="secondSide" /><br />
+			<input type="text" name="thirdSide" /><br />
+			<input type="button" value="Calculate" onclick="isTriangle(SecondForm)" />
+			<input type="text" name="result" />
+			<input type="reset" />
+		</form>
+		<hr />
+		<h1>Third Task</h1>
+		<form name="ThirdForm">
+			<p>
+				x <input type="text" name="x" /> <br />
+				y <input type="text" name="y" /> <br />
+			</p>
+			<input type="button" value="Calculate" onclick="calcQuarter(ThirdForm)" />
+			<input type="text" name="result" />
+			<input type="reset" />
+		</form>
+		<script src="script.js"></script>
+	</body>
+</html>
