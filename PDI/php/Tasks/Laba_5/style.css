@@ -1,0 +1,9 @@
+ul.inline {
+	margin: 0;
+	padding: 4px;
+}
+
+ul.inline li {
+	display: inline;
+	margin-right: 5px;
+}
