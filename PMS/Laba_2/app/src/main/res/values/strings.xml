@@ -1,0 +1,8 @@
+<resources>
+    <string name="label_text">Введите текст:</string>
+    <string name="entry_hint">Поле ввода</string>
+    <string name="app_name"> MyList </string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+</resources>
