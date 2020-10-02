@@ -29,7 +29,6 @@ public class Main {
                 if (i == j)
                     continue;
                 midValue = (arr[i] + arr[j]) / 2;
-                System.out.println(arr[i] + " + " + arr[j] + " = " + midValue);
                 if (Math.abs(midValue - x) < closestValue) {
                     closestValue = Math.abs(midValue - x);
                     closesValues[0] = arr[i];
