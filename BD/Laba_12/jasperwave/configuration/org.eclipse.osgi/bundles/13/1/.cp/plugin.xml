@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         id="application"
+         name="JasperWave Application"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            icon="icons/16x16/jasperwave.png">
+         <run
+               class="com.jasperwave.rcp.JasperWaveApplication">
+         </run>
+      </application>
+   </extension>
+   <extension
+         id="product"
+         name="JasperWave Product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.jasperwave.rcp.application"
+            description="JasperWave is a visual designer for JasperReports, the world&apos;s most popular open source reporting engine"
+            name="JasperWave Report Designer">
+         <property
+               name="appName"
+               value="JasperWave Report Designer"/>
+         <property
+               name="aboutImage"
+               value="about.bmp"/>
+         <property
+               name="aboutText"
+               value="%productBlurb"/>
+         <property
+               name="preferenceCustomization"
+               value="preferences.ini"/>
+         <property
+               name="windowImages"
+               value="icons/16x16/jasperwave.png,icons/32x32/jasperwave.png,icons/48x48/jasperwave.png,icons/64x64/jasperwave.png,icons/128x128/jasperwave.png"/>
+ 		 <property 
+ 		 		name="startupProgressRect" value="0,249,400,15"/>
+         <property 
+         		name="startupMessageRect" value="17,227,400,20"/>
+		 <property 
+		 		name="startupForegroundColor" value="87829F">
+		</property>
+   <property
+         name="introBrandingImage"
+         value="product:icons/48x48/jasperwave.png">
+   </property>
+   <property
+         name="introTitle"
+         value="JasperWave Report Designer">
+   </property>
+      </product>      
+   </extension>
+   <extension
+         point="org.eclipse.ui.activities">
+      <activity
+            id="com.jasperwave.rcp.disabled.extensions"
+            name="Disabled Extensions">
+      </activity>
+      <activityPatternBinding
+            activityId="com.jasperwave.rcp.disabled.extensions"
+            pattern="org.eclipse.search.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="com.jasperwave.rcp.disabled.extensions"
+            pattern="org.eclipse.ui.externaltools.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="com.jasperwave.rcp.disabled.extensions"
+            pattern="org.eclipse.ui.editors.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="com.jasperwave.rcp.disabled.extensions"
+            pattern="org.eclipse.ui.ide.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="com.jasperwave.rcp.disabled.extensions"
+            pattern="org.eclipse.debug.ui.*"/>
+      <activityPatternBinding
+            activityId="com.jasperwave.rcp.disabled.extensions"
+            pattern="org.eclipse.update.ui.*"/>
+      <activityPatternBinding
+            activityId="com.jasperwave.rcp.disabled.extensions"
+            pattern="org.eclipse.help.ui.*"/>
+      <activityPatternBinding
+            activityId="com.jasperwave.rcp.disabled.extensions"
+            pattern="org.eclipse.equinox.p2.ui.*"/>
+      <activityPatternBinding
+            activityId="com.jasperwave.rcp.disabled.extensions"
+            pattern="org.eclipse.team.ui.*">
+      </activityPatternBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="com.jasperwave.core.mainperspective">
+         <hiddenMenuItem
+               id="org.eclipse.ui.run">
+         </hiddenMenuItem>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro.config">
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro">
+      <intro
+            class="org.eclipse.ui.intro.config.CustomizableIntroPart"
+            icon="icons/16x16/jasperwave.png"
+            id="com.jasperwave.rcp.intro"
+            label="Welcome to JasperWave">
+      </intro>
+      <introProductBinding
+            introId="com.jasperwave.rcp.intro"
+            productId="com.jasperwave.rcp.product">
+      </introProductBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro.config">
+      <config
+            content="jasperwave-intro.xml"
+            id="com.jasperwave.rcp.config"
+            introId="com.jasperwave.rcp.intro">
+         <presentation
+               home-page-id="root">
+            <implementation
+                  kind="html"
+                  os="win32,linux,macosx">
+            </implementation>
+         </presentation>
+      </config>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.jasperwave.rcp.action.FileOpenHandler"
+            commandId="com.jasperwave.rcp.ui.file.open">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.jasperwave.rcp.action.FileOpenHandler"
+            id="com.jasperwave.rcp.ui.file.open"
+            name="Open File...">
+      </command>
+   </extension>
+
+</plugin>

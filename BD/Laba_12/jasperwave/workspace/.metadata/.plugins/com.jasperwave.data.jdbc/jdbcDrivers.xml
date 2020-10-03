@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<drivers>
+<driver class="com.microsoft.sqlserver.jdbc.SQLServerDriver" defaultPort="1433" name="jdbc" url="jdbc:sqlserver://">
+<classpath>
+<path file="C:\Users\ddiim\Downloads\jasperwave\mssql-jdbc-6.1.0.jre8.jar"/>
+</classpath>
+</driver>
+</drivers>

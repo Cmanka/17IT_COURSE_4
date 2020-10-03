@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+<activeDatasource name="music"/>
+<datasource name="Empty datasource" records="1" type="Empty"/>
+<datasource connectionUrl="jdbc:sqlserver://" database="music" driverClass="jdbc" host="localhost" name="music" password="jqfMg/2PhKQ=" port="1433" type="SQL" user="blz"/>
+</datasources>

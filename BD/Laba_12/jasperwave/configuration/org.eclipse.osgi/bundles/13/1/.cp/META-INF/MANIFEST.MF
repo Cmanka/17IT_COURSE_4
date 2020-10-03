@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-Name: JasperWave Report Designer RCP Plug-in
+Bundle-SymbolicName: com.jasperwave.rcp;singleton=true
+Bundle-Version: 1.1.0
+Bundle-ClassPath: jw-rcp.jar
+Bundle-Vendor: JasperWave Team
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,org.eclipse.ui,org.eclipse.ui
+ .ide,org.eclipse.ui.intro,com.jasperwave.designer,com.jasperwave.inte
+ gration.jrserver,org.eclipse.core.filesystem,org.eclipse.core.resourc
+ es,com.jasperwave.storage.file
+Provide-Package: com.jasperwave.rcp
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

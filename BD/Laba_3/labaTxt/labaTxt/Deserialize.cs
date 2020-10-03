@@ -35,10 +35,18 @@ namespace labaTxt
                 List<Student> students = new List<Student>();
                 using(StreamReader sr = new StreamReader(path))
                 {
+                    int i = 0;
+                    string[] fields = new string[5];
                     while(sr.Peek() >= 0)
                     {
-                        string[] fields = sr.ReadLine().Split(' ');
-                        students.Add(new Student(fields[0], fields[1], fields[2], fields[3], fields[4]));
+                        fields[i] = sr.ReadLine();
+                        if (i==4)
+                        {
+                            students.Add(new Student(fields[0], fields[1], fields[2], fields[3], fields[4]));
+                            i = 0;
+                            continue;
+                        }
+                        i++;
                     }
                 }
                 return students;

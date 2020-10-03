@@ -31,10 +31,16 @@ namespace labaTxt
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(path, true))
+                using (StreamWriter sw = new StreamWriter(path, false))
                 {
                     foreach (var student in students)
-                        sw.Write($"{student.FullName} {student.Date} {student.Group} {student.Phone} {student.Address}\n");
+                    {
+                        sw.WriteLine(student.FullName);
+                        sw.WriteLine(student.Date);
+                        sw.WriteLine(student.Group);
+                        sw.WriteLine(student.Phone);
+                        sw.WriteLine(student.Address);
+                    }
                 }
             }
             catch (Exception ex)
