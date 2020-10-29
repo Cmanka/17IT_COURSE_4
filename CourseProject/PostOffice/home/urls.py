@@ -3,7 +3,8 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='home'),
+    path('', index_view, name='init'),
+    path('start/', IndexView.as_view(), name='home'),
     path('post_offices/', PostOfficesView.as_view(), name='post_offices'),
     path('post_office/<int:pk>', PostOfficeByIdView.as_view(), name='post_office'),
     path('publishing_houses/', PublishingHousesView.as_view(), name='publishing_houses'),
@@ -28,4 +29,6 @@ urlpatterns = [
     path('add_postman/', CreatePostmanView.as_view(), name='add_postman'),
     path('edit_postman/<int:pk>', EditPostmanView.as_view(), name='edit_postman'),
     path('delete_postman/<int:pk>', DeletePostmanView.as_view(), name='delete_postman'),
+    path('login/', user_login, name='login'),
+    path('logout/', user_logout, name='logout'),
 ]

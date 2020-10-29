@@ -4,8 +4,10 @@
             <a href="#" class="text-success">Back to top</a>
         </p>
         <p>Information system designed to manage post offices.</p>
-        <p><a href="{% url 'home' %}" class="text-success">Visit the homepage</a> or read my <a
-                href="https://github.com/Cmanka/17IT_COURSE_4/tree/master/CourseProject" class="text-success">
-            started guide</a>.</p>
+        {% if request.user.is_authenticated %}
+            <p><a href="{% url 'home' %}" class="text-success">Visit the homepage</a> or read my <a
+                    href="https://github.com/Cmanka/17IT_COURSE_4/tree/master/CourseProject" class="text-success">
+                started guide</a>.</p>
+        {% endif %}
     </div>
 </footer>

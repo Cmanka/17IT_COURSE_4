@@ -17,7 +17,7 @@ class PostOfficeMixin(SingleObjectMixin):
             cnt=Count('post_office')).filter(
             position__name='Operator')
         context['regions'] = PostOffice.objects.get(pk=self.kwargs["pk"]).region_set.all()
-        context['subscriptions'] = PostOffice.objects.get(pk=self.kwargs["pk"]).subscription_set.all()
+        context['publications'] = PostOffice.objects.get(pk=self.kwargs["pk"]).release_set.all()
         return context
 
 

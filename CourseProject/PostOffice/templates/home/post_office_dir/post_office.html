@@ -19,7 +19,10 @@
             <strong>Served regions:</strong> {{ regions.count }}<br>
         </p>
         <p>
-            <strong>Publications count:</strong> {{ subscriptions.count }}<br>
+            <strong>Publications count:</strong> {{ publications.count }}({% for publication in publications %}
+            {{ publication.publication }};
+            {% endfor %}
+            )<br>
         </p>
         <p><a class="btn btn-success" href="{% url 'post_offices' %}" role="button">Back to records
             »</a>

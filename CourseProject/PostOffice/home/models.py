@@ -93,6 +93,7 @@ class Release(models.Model):
     price = models.DecimalField(verbose_name='Price', max_digits=9, decimal_places=2)
     count = models.PositiveIntegerField(verbose_name='Count', default=1)
     publication = models.ForeignKey('Publication', on_delete=models.PROTECT)
+    post_office = models.ForeignKey('PostOffice', on_delete=models.PROTECT, blank=True,null=True)
 
     def __str__(self):
         return f'{self.publication.pk}, {self.publication.name}'
@@ -106,7 +107,7 @@ class Release(models.Model):
 class Region(models.Model):
     index = models.PositiveIntegerField(verbose_name='Region Index', unique=True)
     post_office = models.ForeignKey('PostOffice', on_delete=models.PROTECT)
-    postman = models.ForeignKey('Employee', on_delete=models.PROTECT)
+    postman = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f'{self.index}'
@@ -176,10 +177,9 @@ class Subscription(models.Model):
     term = models.PositiveSmallIntegerField(verbose_name='Subscription term(month)', default=1)
     end_date = models.DateField(verbose_name='Subscription end', default=date.today() + timedelta(30))
     release = models.ForeignKey('Release', on_delete=models.PROTECT)
-    post_office = models.ForeignKey('PostOffice', on_delete=models.PROTECT, blank=True)
 
     def __str__(self):
-        return f'Publication id: {self.release.pk},Name: {self.release.publication.name:}, term: {self.term} month, ' \
+        return f'Post office: {self.release.post_office}, Publication id: {self.release.pk},Name: {self.release.publication.name:}, term: {self.term} month, ' \
                f'count of publications:{self.release.count}'
 
     def total_price(self):

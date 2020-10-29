@@ -9,17 +9,23 @@
     <link rel="shortcut icon" type="image/png" href="{% static "img/icon.ico" %}">
     <title>{% block title %}Home page{% endblock %}</title>
 </head>
-<body>
+<body style="background-color: #F3F3F3;">
 
-<header style="height: 55px">
-    {% include 'inc/_nav.html' %}
-</header>
+<div style="display:flex;flex-direction: column;min-height:100vh;justify-content: space-between;">
+    {% block header %}
+        <header style="height: 55px">
+            {% include 'inc/_nav.html' %}
+        </header>
+    {% endblock %}
 
-<div class="main content">
-    {% block content %}{% endblock %}
+    <div class="main content" style="display: flex;justify-content: center;">
+        {% block content %}{% endblock %}
+    </div>
+
+    {% block footer %}
+        {% include 'inc/_footer.html' %}
+    {% endblock %}
 </div>
-
-{% include 'inc/_footer.html' %}
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

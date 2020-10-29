@@ -38,8 +38,8 @@ class PublicationAdmin(admin.ModelAdmin):
 
 
 class ReleaseAdmin(admin.ModelAdmin):
-    list_display = ('id', 'price', 'count', 'publication')
-    list_display_links = ('id', 'price', 'count', 'publication')
+    list_display = ('id', 'price', 'count', 'publication','post_office')
+    list_display_links = ('id', 'price', 'count', 'publication','post_office')
     search_fields = ('price', 'id', 'count')
 
 
@@ -62,8 +62,8 @@ class FollowerAdmin(admin.ModelAdmin):
 
 
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'start_date', 'term', 'end_date', 'description', 'release', 'post_office')
-    list_display_links = ('id', 'start_date', 'term', 'end_date', 'description', 'release', 'post_office')
+    list_display = ('id', 'start_date', 'term', 'end_date', 'description', 'release')
+    list_display_links = ('id', 'start_date', 'term', 'end_date', 'description', 'release')
     search_fields = ('term', 'id',)
 
 

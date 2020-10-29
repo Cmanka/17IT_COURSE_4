@@ -1,6 +1,7 @@
+from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -13,6 +14,13 @@ from django.template.loader import render_to_string
 from weasyprint import HTML
 import tempfile
 import datetime
+
+
+def index_view(request):
+    if (request.user.is_authenticated):
+        return redirect('home')
+    else:
+        return redirect('login')
 
 
 class IndexView(ListView):
@@ -324,3 +332,20 @@ def export_pdf(request):
         response.write(output.read())
 
     return response
+
+
+def user_login(request):
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserLoginForm()
+    return render(request, 'home/authorization/login.html', {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('login')

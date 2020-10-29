@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
 from home.models import Employee, Follower_Subscription
 import re
 from django.core.exceptions import ValidationError
@@ -48,3 +50,7 @@ class PostmanForm(forms.ModelForm):
             raise ValidationError('Field cannot contain numbers in name')
         return middle_name
 
+
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(label='User name', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
