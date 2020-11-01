@@ -41,16 +41,27 @@
                 <td>{{ region.index }}</td>
                 <td>{{ region.postman }}</td>
                 <td>
-                    {% for subscription in region.post_office.subscription_set.all %}
+                    {% for subscription in region.post_office.release_set.all %}
                         <strong>Publication({{ forloop.counter }})</strong><p>{{ subscription }}</p>
                     {% endfor %}
                 </td>
-                <td>
-                    Post office name: {{ region.post_office }}<br>
-                    Employees count: {{ region.post_office.employee_set.all.count }}<br>
-                    Served regions count: {{ region.post_office.region_set.all.count }}<br>
-                    Count of types of publications: {{ region.post_office.subscription_set.all.count }}
-                </td>
+                {% if superuser %}
+                    <td>
+                        Post office name: {{ region.post_office }}<br>
+                        Employees count: {{ region.post_office.employee_set.all.count }}<br>
+                        Served regions count: {{ region.post_office.region_set.all.count }}<br>
+                        Count of types of publications: {{ region.post_office.release_set.all.count }}
+                    </td>
+                {% else %}
+                    {% if forloop.counter <= 1 %}
+                        <td>
+                            Post office name: {{ region.post_office }}<br>
+                            Employees count: {{ region.post_office.employee_set.all.count }}<br>
+                            Served regions count: {{ region.post_office.region_set.all.count }}<br>
+                            Count of types of publications: {{ region.post_office.release_set.all.count }}
+                        </td>
+                    {% endif %}
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

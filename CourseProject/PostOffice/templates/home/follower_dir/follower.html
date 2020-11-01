@@ -11,6 +11,7 @@
         <p><strong>Email: </strong>{{ follower.email }}</p>
         <p><strong>Phone number: </strong>{{ follower.phone }}</p>
         <p><strong>Subscription(s): </strong>{{ subscriptions.count }}</p>
+        <p><strong>Postman: </strong>{{ postman }}</p>
         {% if subscriptions.count > 0 %}
             {% for subscription in subscriptions %}
                 <ul>

@@ -17,10 +17,18 @@ import datetime
 
 
 def index_view(request):
-    if (request.user.is_authenticated):
+    if request.user.is_authenticated:
         return redirect('home')
     else:
         return redirect('login')
+
+
+def get_user(self):
+    user_id = self.request.user.pk
+    if user_id >= 2:
+        return Employee.objects.get(pk=user_id)
+    else:
+        return False
 
 
 class IndexView(ListView):
@@ -29,9 +37,14 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['keys'] = {'Post offices': 'post_offices', 'Publishing houses': 'publishing_houses',
-                           'Regions': 'regions', 'Houses': 'houses', 'Publications': 'publications',
-                           'Subscriptions': 'subscriptions', 'Followers': 'followers'}
+        if self.request.user.pk == 1:
+            context['keys'] = {'Post offices': 'post_offices', 'Publishing houses': 'publishing_houses',
+                               'Regions': 'regions', 'Houses': 'houses', 'Publications': 'publications',
+                               'Subscriptions': 'subscriptions', 'Followers': 'followers'}
+        else:
+            context['keys'] = {'Post offices': 'post_offices',
+                               'Regions': 'regions', 'Houses': 'houses', 'Publications': 'publications',
+                               'Subscriptions': 'subscriptions', 'Followers': 'followers'}
         return context
 
 
@@ -47,7 +60,11 @@ class PostOfficesView(ListView):
         return context
 
     def get_queryset(self):
-        return PostOffice.objects.all()
+        employee = get_user(self)
+        if employee:
+            return PostOffice.objects.all().filter(pk=employee.post_office_id)
+        else:
+            return PostOffice.objects.all()
 
 
 class PostOfficeByIdView(PostOfficeMixin, DetailView):
@@ -89,7 +106,11 @@ class RegionsView(ListView):
         return context
 
     def get_queryset(self):
-        return Region.objects.all()
+        employee = get_user(self)
+        if employee:
+            return Region.objects.all().filter(post_office_id=employee.post_office_id)
+        else:
+            return Region.objects.all()
 
 
 class RegionByIdView(RegionMixin, DetailView):
@@ -110,7 +131,11 @@ class HousesView(ListView):
         return context
 
     def get_queryset(self):
-        return House.objects.all()
+        employee = get_user(self)
+        if employee:
+            return House.objects.all().filter(region__post_office_id=employee.post_office_id)
+        else:
+            return House.objects.all()
 
 
 class HouseByIdView(HouseMixin, DetailView):
@@ -128,11 +153,14 @@ class PublicationsView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Publications page'
-
         return context
 
     def get_queryset(self):
-        return Release.objects.all()
+        employee = get_user(self)
+        if employee:
+            return Release.objects.all().filter(post_office_id=employee.post_office_id)
+        else:
+            return Release.objects.all()
 
 
 class PublicationByIdView(PublicationMixin, DetailView):
@@ -153,7 +181,11 @@ class SubscriptionsView(ListView):
         return context
 
     def get_queryset(self):
-        return Subscription.objects.all()
+        employee = get_user(self)
+        if employee:
+            return Subscription.objects.all().filter(release__post_office_id=employee.post_office_id)
+        else:
+            return Subscription.objects.all()
 
 
 class SubscriptionByIdView(SubscriptionMixin, DetailView):
@@ -174,7 +206,11 @@ class FollowersView(ListView):
         return context
 
     def get_queryset(self):
-        return Follower.objects.all()
+        employee = get_user(self)
+        if employee:
+            return Follower.objects.all().filter(house__region__post_office_id=employee.post_office_id)
+        else:
+            return Follower.objects.all()
 
 
 class FollowerByIdView(FollowerMixin, DetailView):
@@ -193,11 +229,14 @@ class ReportView(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Report page'
         context['post_offices'] = PostOffice.objects.all()
-
         return context
 
     def get_queryset(self):
-        return Region.objects.all()
+        employee = get_user(self)
+        if employee:
+            return Region.objects.filter(post_office_id=employee.post_office_id)
+        else:
+            return Region.objects.all()
 
 
 class PostmenView(ListView):
@@ -213,7 +252,11 @@ class PostmenView(ListView):
         return context
 
     def get_queryset(self):
-        return Employee.objects.filter(position__name='Postman')
+        employee = get_user(self)
+        if employee:
+            return Employee.objects.filter(position__name='Postman').filter(post_office_id=employee.post_office_id)
+        else:
+            return Employee.objects.all().filter(position__name='Postman')
 
 
 class CreatePostmanView(CreateView):
@@ -224,8 +267,12 @@ class CreatePostmanView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Add new postman'
-
         return context
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['employee'] = get_user(self)
+        return kwargs
 
 
 class EditPostmanView(UpdateView):
@@ -233,6 +280,11 @@ class EditPostmanView(UpdateView):
     form_class = PostmanForm
     template_name = 'home/employee_dir/edit_postman.html'
     success_url = reverse_lazy('manage_postmen')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['employee'] = get_user(self)
+        return kwargs
 
 
 class DeletePostmanView(DeleteView):
@@ -253,8 +305,14 @@ def get_publications(request):
     else:
         query_form = PostOfficePublicationsQueryForm()
         post_offices = PostOffice.objects.all()
-        query_form.fields['post_office_name'].choices = [(name.name, name.name) for
-                                                         name in post_offices]
+        employee = Employee.objects.get(pk=request.user.pk) if request.user.pk >= 2 else False
+        if employee:
+            query_form.fields['post_office_name'].choices = [(name.name, name.name) for
+                                                             name in post_offices.filter(pk=employee.post_office_id)]
+        else:
+            query_form.fields['post_office_name'].choices = [(name.name, name.name) for
+                                                             name in post_offices]
+
         context = {'form': query_form, 'title': 'Get all publications of the post office'}
         return render(request, 'home/queries_dir/query_2/query.html', context)
 
@@ -271,8 +329,13 @@ def get_postmen(request):
     else:
         query_form = PostOfficePublicationsQueryForm()
         post_offices = PostOffice.objects.all()
-        query_form.fields['post_office_name'].choices = [(name.name, name.name) for
-                                                         name in post_offices]
+        employee = Employee.objects.get(pk=request.user.pk) if request.user.pk >= 2 else False
+        if employee:
+            query_form.fields['post_office_name'].choices = [(name.name, name.name) for
+                                                             name in post_offices.filter(pk=employee.post_office_id)]
+        else:
+            query_form.fields['post_office_name'].choices = [(name.name, name.name) for
+                                                             name in post_offices]
         context = {'form': query_form, 'title': 'Get count of the postmen of the post office'}
         return render(request, 'home/queries_dir/query_1/query.html', context)
 
@@ -289,7 +352,12 @@ def get_served_address(request):
     else:
         query_form = PostmanAddressForm()
         addresses = House.objects.all()
-        query_form.fields['address'].choices = [(address.address, address.address) for address in addresses]
+        employee = Employee.objects.get(pk=request.user.pk) if request.user.pk >= 2 else False
+        if employee:
+            query_form.fields['address'].choices = [(address.address, address.address) for address in
+                                                    addresses.filter(region__post_office_id=employee.post_office_id)]
+        else:
+            query_form.fields['address'].choices = [(address.address, address.address) for address in addresses]
         context = {'form': query_form, 'title': 'Get the name of the postman to the address'}
         return render(request, 'home/queries_dir/query_3/query.html', context)
 
@@ -307,7 +375,12 @@ def get_follower_publication(request):
     else:
         query_form = FollowerForm()
         followers = Follower.objects.all()
-        query_form.fields['followers'].choices = [(follower, follower) for follower in followers]
+        employee = Employee.objects.get(pk=request.user.pk) if request.user.pk >= 2 else False
+        if employee:
+            query_form.fields['followers'].choices = [(follower, follower) for follower in followers.filter(
+                house__region__post_office_id=employee.post_office_id)]
+        else:
+            query_form.fields['followers'].choices = [(follower, follower) for follower in followers]
         context = {'form': query_form, 'title': 'Get follower''s publications'}
         return render(request, 'home/queries_dir/query_4/query.html', context)
 
@@ -318,9 +391,13 @@ def export_pdf(request):
                                       str(datetime.datetime.now()) + '.pdf'
     response['Content-Transfer-Encoding'] = 'binary'
 
-    regions = Region.objects.all()
+    if request.user.pk >= 2:
+        regions = Region.objects.filter(post_office_id=Employee.objects.get(pk=request.user.pk).post_office_id)
+    else:
+        superuser = True
+        regions = Region.objects.all()
 
-    html_string = render_to_string('home/report_dir/pdf-output.html', {'regions': regions})
+    html_string = render_to_string('home/report_dir/pdf-output.html', {'regions': regions, 'superuser': superuser})
     html = HTML(string=html_string)
 
     result = html.write_pdf()

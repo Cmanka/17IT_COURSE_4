@@ -9,7 +9,6 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-
                 {% if request.user.is_authenticated %}
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -19,15 +18,15 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin">Administration</a>
                             </li>
-                            {% if request.user|has_group:'Manager' %}
+                            {% if request.user|has_group:'Manager' or request.user.is_superuser %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'manage_postmen' %}">Manage postmen</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'report' %}">Report</a>
+                                </li>
                             {% endif %}
                         {% endif %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'report' %}">Report</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
                                aria-haspopup="true"

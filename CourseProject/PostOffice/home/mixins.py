@@ -72,6 +72,7 @@ class FollowerMixin(SingleObjectMixin):
         context = super().get_context_data(**kwargs)
         context['title'] = f'Follower {self.kwargs["pk"]}'
         context['subscriptions'] = Follower.objects.get(pk=self.kwargs["pk"]).subscription.all()
+        context['postman'] = Follower.objects.get(pk=self.kwargs["pk"]).house.region.postman
         return context
 
 

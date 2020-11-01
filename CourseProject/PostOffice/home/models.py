@@ -93,7 +93,7 @@ class Release(models.Model):
     price = models.DecimalField(verbose_name='Price', max_digits=9, decimal_places=2)
     count = models.PositiveIntegerField(verbose_name='Count', default=1)
     publication = models.ForeignKey('Publication', on_delete=models.PROTECT)
-    post_office = models.ForeignKey('PostOffice', on_delete=models.PROTECT, blank=True,null=True)
+    post_office = models.ForeignKey('PostOffice', on_delete=models.PROTECT, blank=True, null=True)
 
     def __str__(self):
         return f'{self.publication.pk}, {self.publication.name}'

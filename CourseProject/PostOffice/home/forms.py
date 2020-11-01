@@ -32,6 +32,12 @@ class PostmanForm(forms.ModelForm):
             'position': forms.HiddenInput(),
         }
 
+    def __init__(self, *args, **kwargs):
+        employee = kwargs.pop('employee', None)
+        super().__init__(*args, **kwargs)
+        if employee:
+            self.fields['post_office'].queryset = self.fields['post_office'].queryset.filter(pk=employee.post_office_id)
+
     def clean_first_name(self):
         first_name = self.cleaned_data['first_name']
         if re.search('\d', first_name):
