@@ -1,0 +1,5 @@
+<resources>
+    <string name="label_text">Введите текст:</string>
+    <string name="entry_hint">Ваш текст:</string>
+    <string name="app_name"> Lab2_App </string>
+</resources>

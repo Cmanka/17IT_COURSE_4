@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TrdMeinWorld</string>
+    <string name="strinf">Добавить</string>
+    <string name="delete_record">Удалить</string>
+</resources>
